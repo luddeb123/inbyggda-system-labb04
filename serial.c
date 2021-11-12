@@ -23,15 +23,13 @@ int uart_putchar(char chr, FILE *stream)
 	{
 		uart_putchar('\r', NULL);
 	}
-	while (!(UCSR0A & (1 << UDRE0)))
-		;
+	while (!(UCSR0A & (1 << UDRE0)));
 	UDR0 = chr;
 	return 0;
 }
 
 char uart_getchar(void)
 {
-	while (!(UCSR0A & (1 << RXC0)))
-		;
+	while (!(UCSR0A & (1 << RXC0)));
 	return UDR0;
 }
